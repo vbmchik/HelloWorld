@@ -19,16 +19,15 @@ public class Main {
         int[][][][] superarray = new int[3][4][5][6];
 
 
-
-        int[] array = {99, 5, 3, 6, 1, 7, 8, 11, 12};
-        int[] array1 = {99, 5, 3, 6, 1, 7, 8, 11, 12};
-        int n = 8;
+        int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22};
+        int[] array1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18};
+        int n = 14;
         //сдвиг влево
         //ShiftArray(array, 4);
         System.out.println(Arrays.toString(array));
         mover(array, n);
         System.out.println(Arrays.toString(array));
-        ShiftArray2(array1,n);
+        //ShiftArray2(array1,n);
 
     }
 
@@ -39,10 +38,21 @@ public class Main {
         int t = 0;
         boolean symmetry = false;
 
-        int m = array.length / n;
+        //if( n > array.length/2) n = -(array.length-n);
+
+        int m = Math.abs(array.length / n);
 
         if ((array.length % n) == 0) symmetry = true;
-        if (!symmetry && array.length < n) n = array.length % n;
+        else if (array.length % 2 == 0 && n % 2 == 0) {
+            symmetry = true;
+            m = array.length / 2;
+        }
+
+        if (array.length < n) n = array.length % n;
+
+
+
+
         a = array[0];
 
         for (int i = 0; i < array.length; ++i) {
@@ -50,12 +60,12 @@ public class Main {
             t = ind(t, n, array.length);
             b = array[t];
             array[t] = a;
-
+// Учесть вариант как 6 и 4
             if (symmetry && (i+1) % m == 0 && i != 0 ) {
                 if( i == array.length - 1 )
                     array[ind(t,n,array.length)] = b;
                 else
-                   b = array[t+1];
+                    b = array[t < array.length - 1 ? t + 1 : 0];
                 t = t  + 1 ;
             }
 
@@ -91,35 +101,7 @@ public class Main {
             return i + n >= 0 ? i + n : length + i + n;
     }
 
-    public static void ShiftArray(int[] array, int n) {
-        System.out.println("Задача №7:(масив-" + Arrays.toString(array));
-        if (n > 0) {
-            System.out.println("положительный счетчик (сдвиг вправо на " + n + ")");
-            int temp = 0;
-            for (int j = 0; j < n; j++) {
-                for (int i = 0; i < array.length; i++) {
-                    temp = array[i];
-                    array[i] = array[array.length - 1];
-                    array[array.length - 1] = temp;
-                }
-            }
-            System.out.println(Arrays.toString(array));
-        } else {
-            System.out.println("отрицательный счетчик(сдвиг влево на " + -n + ")");
-            for (int j = 0; j < 2; j++) {
-                int temp = array[0];
-                for (int i = 1; i < array.length; i++) {
-                    array[i - 1] = array[i];
-                }
-                array[array.length - 1] = temp;
-            }
-            System.out.println(Arrays.toString(array));
-        }
-    }
 
-    public static void changer(int t) {
-        t = t + 16;
-    }
 
     public static void change(int[] array) {
         for (int i = 0; i < array.length; ++i)
@@ -146,7 +128,6 @@ public class Main {
     }
 
     public static int calc(int x, int y, int switcher) {
-        ;
         int out = -99999;
         switch (switcher) {
             case 0:
