@@ -21,7 +21,7 @@ public class Main {
 
         int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22};
         int[] array1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18};
-        int n = 14;
+        int n = 6;
         //сдвиг влево
         //ShiftArray(array, 4);
         System.out.println(Arrays.toString(array));
@@ -31,6 +31,14 @@ public class Main {
 
     }
 
+    public static int gcd(int a, int b) {
+        while (b != 0) {
+            int tmp = a % b;
+            a = b;
+            b = tmp;
+        }
+        return a;
+    }
 
     public static void mover(int[] array, int n) {
         int a, b;
@@ -45,7 +53,7 @@ public class Main {
         if ((array.length % n) == 0) symmetry = true;
         else if (array.length % 2 == 0 && n % 2 == 0) {
             symmetry = true;
-            m = array.length / 2;
+            m = array.length / gcd(array.length, n);
         }
 
         if (array.length < n) n = array.length % n;
