@@ -20,7 +20,7 @@ public class Main {
 
 
 
-        int[] array = {99, 5, 3, 2, 1, 7};
+        int[] array = {99, 5, 3, 2, 1, 7,4,2};
         int n = 2;
         //сдвиг влево
         //ShiftArray(array, 4);
@@ -37,19 +37,16 @@ public class Main {
         int t = 0 ;
 
         a = array[0];
-
+        int f = 0 ;
         for( int i = 0 ; i < array.length ; ++i) {
 
             t = ind(t, n, array.length);
 
-            if (array.length % 2 == 0) {
-                if (t == array.length - 1 && n < 0) t = array.length - 1;
-                if (t == 0 && n > 0) t = 1;
-            }
 
             b = array[t];
             array[t] = a;
             a = b;
+            printarray(array);
         }
     }
     public static int ind( int i, int n, int length )
