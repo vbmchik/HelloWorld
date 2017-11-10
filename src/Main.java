@@ -16,50 +16,79 @@ public class Main {
         arr = new int[]{1, 2, 3, 4, 5};
 
 
-        int [][][][] superarray = new int[3][4][5][6];
+        int[][][][] superarray = new int[3][4][5][6];
 
 
 
-        int[] array = {99, 5, 3, 6, 1, 7,4,2};
-        int n = 2;
+        int[] array = {99, 5, 3, 6, 1, 7, 8, 11, 12};
+        int[] array1 = {99, 5, 3, 6, 1, 7, 8, 11, 12};
+        int n = 8;
         //сдвиг влево
         //ShiftArray(array, 4);
         System.out.println(Arrays.toString(array));
-        mover(array,4);
+        mover(array, n);
         System.out.println(Arrays.toString(array));
+        ShiftArray2(array1,n);
 
     }
 
 
-    public static void mover( int[] array, int n){
+    public static void mover(int[] array, int n) {
         int a, b;
 
-        int t = 0 ;
-        boolean symmetry = false ;
-        int m = array.length / n ;
+        int t = 0;
+        boolean symmetry = false;
 
-        if( (array.length % n) == 0 ) symmetry = true;
-        if( !symmetry && array.length > n ) n = array.length%n;
+        int m = array.length / n;
+
+        if ((array.length % n) == 0) symmetry = true;
+        if (!symmetry && array.length < n) n = array.length % n;
         a = array[0];
-        int f = 0 ;
-        for( int i = 0 ; i < array.length ; ++i) {
+
+        for (int i = 0; i < array.length; ++i) {
 
             t = ind(t, n, array.length);
-            if( symmetry && ( i + 1 ) % m == 0  && i != 0 )
-                t = ind(t+1,n,array.length);
-
             b = array[t];
             array[t] = a;
+
+            if (symmetry && (i+1) % m == 0 && i != 0 ) {
+                if( i == array.length - 1 )
+                    array[ind(t,n,array.length)] = b;
+                else
+                   b = array[t+1];
+                t = t  + 1 ;
+            }
+
             a = b;
+
             printarray(array);
         }
     }
-    public static int ind( int i, int n, int length )
-    {
-        if( n > 0 )
-            return i + n < length ? i + n  : i + n - length;
+
+    public static void ShiftArray2(int[] array, int n) {
+        System.out.println("Задача №7 одним циклом:(масив-" + Arrays.toString(array) + ": ");
+
+        int temp = 0;
+        int j = 1;
+        for (int i = 0; i < array.length; i++) {
+            temp = array[i];
+            array[i] = array[array.length - 1];
+            array[array.length - 1] = temp;
+            if (i == array.length - 1 && j < n) {
+                j = j + 1;
+                i = -1;
+                temp = 0;
+            }
+            System.out.println(Arrays.toString(array));
+        }
+        System.out.println(Arrays.toString(array));
+    }
+
+    public static int ind(int i, int n, int length) {
+        if (n > 0)
+            return i + n < length ? i + n : i + n - length ;
         else
-            return i + n >= 0 ? i + n  : length  + i + n  ;
+            return i + n >= 0 ? i + n : length + i + n;
     }
 
     public static void ShiftArray(int[] array, int n) {
@@ -87,13 +116,14 @@ public class Main {
             System.out.println(Arrays.toString(array));
         }
     }
-    public static void changer(int t){
+
+    public static void changer(int t) {
         t = t + 16;
     }
 
     public static void change(int[] array) {
-        for( int i = 0 ; i < array.length ; ++i)
-            array[i]+=3;
+        for (int i = 0; i < array.length; ++i)
+            array[i] += 3;
     }
 
     public static void printarray(int[] arr) {
