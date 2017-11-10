@@ -20,12 +20,12 @@ public class Main {
 
 
 
-        int[] array = {99, 5, 3, 2, 1, 7,4,2};
+        int[] array = {99, 5, 3, 6, 1, 7,4,2};
         int n = 2;
         //сдвиг влево
         //ShiftArray(array, 4);
         System.out.println(Arrays.toString(array));
-        mover(array,3);
+        mover(array,4);
         System.out.println(Arrays.toString(array));
 
     }
@@ -35,13 +35,18 @@ public class Main {
         int a, b;
 
         int t = 0 ;
+        boolean symmetry = false ;
+        int m = array.length / n ;
 
+        if( (array.length % n) == 0 ) symmetry = true;
+        if( !symmetry && array.length > n ) n = array.length%n;
         a = array[0];
         int f = 0 ;
         for( int i = 0 ; i < array.length ; ++i) {
 
             t = ind(t, n, array.length);
-
+            if( symmetry && ( i + 1 ) % m == 0  && i != 0 )
+                t = ind(t+1,n,array.length);
 
             b = array[t];
             array[t] = a;
