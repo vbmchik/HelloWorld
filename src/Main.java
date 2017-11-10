@@ -3,25 +3,10 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String[] args) {
-
-        int[] arr;
-
-        int[][] triangle = new int[3][];
-
-        triangle[0] = new int[3];
-        triangle[1] = new int[32];
-        triangle[2] = new int[13];
-
-        System.out.println(triangle[1].length);
-        arr = new int[]{1, 2, 3, 4, 5};
-
-
-        int[][][][] superarray = new int[3][4][5][6];
-
-
+        
         int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22};
         int[] array1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18};
-        int n = 6;
+        int n = 14;
         //сдвиг влево
         //ShiftArray(array, 4);
         System.out.println(Arrays.toString(array));
@@ -58,9 +43,6 @@ public class Main {
 
         if (array.length < n) n = array.length % n;
 
-
-
-
         a = array[0];
 
         for (int i = 0; i < array.length; ++i) {
@@ -68,7 +50,7 @@ public class Main {
             t = ind(t, n, array.length);
             b = array[t];
             array[t] = a;
-// Учесть вариант как 6 и 4
+            // Учесть вариант как 6 и 4
             if (symmetry && (i+1) % m == 0 && i != 0 ) {
                 if( i == array.length - 1 )
                     array[ind(t,n,array.length)] = b;
@@ -79,7 +61,7 @@ public class Main {
 
             a = b;
 
-            printarray(array);
+            //printarray(array);
         }
     }
 
