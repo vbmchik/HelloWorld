@@ -4,14 +4,15 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24};
+        int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};//, 11, 12, 13};//, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28};
         int[] array1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18};
-        int n = 16;
-        //сдвиг влево
-        //ShiftArray(array, 4);
+        int n = 8;
+
         System.out.println(Arrays.toString(array));
         mover(array, n);
         System.out.println(Arrays.toString(array));
+
+        shortage();
         //ShiftArray2(array1,n);
 
     }
@@ -27,12 +28,8 @@ public class Main {
 
     public static void mover(int[] array, int n) {
         int a, b;
-
         int t = 0;
         boolean symmetry = false;
-
-        //if( n > array.length/2) n = -(array.length-n);
-
         int m = Math.abs(array.length / n);
 
         if ((array.length % n) == 0) symmetry = true;
@@ -60,10 +57,29 @@ public class Main {
             }
 
             a = b;
-
-            //printarray(array);
+            //System.out.println(Arrays.toString(array));
         }
     }
+
+
+
+    public static int ind(int i, int n, int length) {
+        if (n > 0)
+            return i + n < length ? i + n : i + n - length ;
+        else
+            return i + n >= 0 ? i + n : length + i + n;
+    }
+
+    public static void printarray(int[] arr) {
+        for (int i = 0; i < arr.length; ++i)
+            System.out.print(arr[i] + " ");
+
+        System.out.println();
+
+    }
+
+
+    // Famouse Rudenko condition
 
     public static void ShiftArray2(int[] array, int n) {
         System.out.println("Задача №7 одним циклом:(масив-" + Arrays.toString(array) + ": ");
@@ -84,59 +100,29 @@ public class Main {
         System.out.println(Arrays.toString(array));
     }
 
-    public static int ind(int i, int n, int length) {
-        if (n > 0)
-            return i + n < length ? i + n : i + n - length ;
-        else
-            return i + n >= 0 ? i + n : length + i + n;
-    }
-
-
-
-    public static void change(int[] array) {
-        for (int i = 0; i < array.length; ++i)
-            array[i] += 3;
-    }
-
-    public static void printarray(int[] arr) {
-        for (int i = 0; i < arr.length; ++i)
-            System.out.print(arr[i] + " ");
-
-        System.out.println();
-
-    }
-
-    public static void mult(int a, int n) {
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++)
-                System.out.print(j + 1 + " ");
-            System.out.println();
+    public static void reverse(int[] array, int n, int k) {
+        int temp = 0;
+        int j = k;
+        for (int i = n; i < j; i++, j--) {
+            temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
         }
-
-
+        System.out.println(Arrays.toString(array));
     }
 
-    public static int calc(int x, int y, int switcher) {
-        int out = -99999;
-        switch (switcher) {
-            case 0:
-                out = x + y;
-                break;
-            case 1:
-                out = x - y;
-                break;
-            case 2:
-                out = x * y;
-                break;
-            case 3:
-                System.out.println("jkshdghjkdsgfhjksf");
-            case 4:
-                out = x / y;
-                break;
-        }
-        return out;
+    public static void sort(int[] array, int n) {
+        reverse(array, 0, n);
+        reverse(array, n + 1, array.length - 1);
+        reverse(array, 0, array.length - 1);
     }
 
-
+    public static void shortage() {
+        // write your code here
+        int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 34, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28};
+        int[] array2 = {1, 2, 3, 4, 5};
+        int[] array3 = {1, 2, 3, 4, 5};
+        System.out.println(Arrays.toString(array));
+        sort(array, 2);
+    }
 }
