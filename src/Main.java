@@ -6,7 +6,7 @@ public class Main {
 
         int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};//, 11, 12, 13};//, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28};
         int[] array1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18};
-        int n = 8;
+        int n = 5;
 
         System.out.println(Arrays.toString(array));
         mover(array, n);
@@ -32,8 +32,9 @@ public class Main {
         boolean symmetry = false;
         int m = Math.abs(array.length / n);
 
-        if ((array.length % n) == 0) symmetry = true;
-        else if (gcd(array.length, n) != 0) {
+        /*if ((array.length % n) == 0) symmetry = true;
+        else */
+        if (gcd(array.length, n) != 0) {
             symmetry = true;
             m = array.length / gcd(array.length, n);
         }
