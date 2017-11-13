@@ -4,9 +4,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};//, 11, 12, 13};//, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28};
+        int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28};
         int[] array1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18};
-        int n = 5;
+        int n = -29;
 
         System.out.println(Arrays.toString(array));
         mover(array, n);
@@ -30,10 +30,13 @@ public class Main {
         int a, b;
         int t = 0;
         boolean symmetry = false;
+        if (Math.abs(n) >= array.length) n = n % (array.length);
+        if (n == 0) {
+            System.out.println("Zero shift length");
+            return;
+        }
         int m = Math.abs(array.length / n);
 
-        /*if ((array.length % n) == 0) symmetry = true;
-        else */
         if (gcd(array.length, n) != 0) {
             symmetry = true;
             m = array.length / gcd(array.length, n);
@@ -48,7 +51,7 @@ public class Main {
             t = ind(t, n, array.length);
             b = array[t];
             array[t] = a;
-            // Учесть вариант как 6 и 4
+
             if (symmetry && (i+1) % m == 0 && i != 0 ) {
                 if( i == array.length - 1 )
                     array[ind(t,n,array.length)] = b;
